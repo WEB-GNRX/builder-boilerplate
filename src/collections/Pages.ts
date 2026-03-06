@@ -1,19 +1,17 @@
 import type { CollectionConfig } from 'payload'
-import {
-  HeroBlock,
-  FeaturesBlock,
-  AboutBlock,
-  ServicesBlock,
-  TestimonialsBlock,
-  CTABlock,
-  ContactBlock,
-  FAQBlock,
-  StatsBlock,
-  GalleryBlock,
-  TeamBlock,
-  LogoCloudBlock,
-  PricingBlock,
-} from '../blocks'
+import { HeroBlock } from '../blocks/Hero'
+import { FeaturesBlock } from '../blocks/Features'
+import { AboutBlock } from '../blocks/About'
+import { ServicesBlock } from '../blocks/Services'
+import { TestimonialsBlock } from '../blocks/Testimonials'
+import { CTABlock } from '../blocks/CTA'
+import { ContactBlock } from '../blocks/Contact'
+import { FAQBlock } from '../blocks/FAQ'
+import { StatsBlock } from '../blocks/Stats'
+import { GalleryBlock } from '../blocks/Gallery'
+import { TeamBlock } from '../blocks/Team'
+import { LogoCloudBlock } from '../blocks/LogoCloud'
+import { PricingBlock } from '../blocks/Pricing'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
