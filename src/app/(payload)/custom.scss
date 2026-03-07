@@ -76,6 +76,119 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── CRITICAL: SVG ICON SIZING ──────────────────────────── */
+/* Payload's icons have no intrinsic size — they rely on container CSS.
+   Our custom styles break some container sizing, so we enforce explicit icon sizes. */
+svg.icon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Specific icon sizes */
+.icon--search {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.icon--chevron {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.icon--close-menu,
+.icon--menu {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.icon--plus {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.icon--logout {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Buttons with icons */
+.btn__icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.btn--icon-only svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Per-page selector icon */
+.per-page__icon svg,
+.per-page__base-button svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Pill icons */
+.pill__icon svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* Sort icons in table headers */
+.sort-column__icon svg,
+.sort-pill__icon svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* ─── CRITICAL: SEARCH BAR FIX ───────────────────────────── */
+.search-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* ─── CRITICAL: COLLECTION LIST LAYOUT ───────────────────── */
+.collection-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.collection-list__wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.list-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 0 !important;
+}
+
+/* List header with title */
+.list-header {
+  padding: 16px 0 !important;
+}
+
+.list-header__titleAndActions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.list-header h1 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: var(--b-text) !important;
+}
+
 /* ============================================================
    LAYOUT
    ============================================================ */
