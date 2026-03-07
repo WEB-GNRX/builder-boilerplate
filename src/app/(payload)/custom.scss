@@ -1,639 +1,145 @@
 /* ============================================================
-   BUILDER ADMIN — PREMIUM THEME v3
-   Light default + Dark mode toggle
+   BUILDER ADMIN — THEME v4
+   Minimal, tested overrides only. Don't fight Payload.
    ============================================================ */
 
-/* ─── SHARED DESIGN TOKENS ──────────────────────────────── */
+/* ─── DESIGN TOKENS ─────────────────────────────────────── */
 :root {
-  --brand-primary: #5c7cfa;
-  --brand-primary-light: #748ffc;
-  --brand-primary-dim: rgba(92, 124, 250, 0.1);
+  --brand: #5c7cfa;
+  --brand-hover: #748ffc;
+  --brand-dim: rgba(92, 124, 250, 0.1);
   --brand-pink: #f06595;
   --brand-green: #20c997;
   --brand-yellow: #fcc419;
-  --style-radius-s: 6px;
-  --style-radius-m: 10px;
-  --style-radius-l: 14px;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* ─── LIGHT THEME (DEFAULT) ─────────────────────────────── */
-[data-theme="light"],
-:root {
-  --b-bg: #f8f9fc;
-  --b-sidebar: #ffffff;
-  --b-sidebar-border: #e8eaf0;
-  --b-surface: #ffffff;
-  --b-surface-hover: #f0f2f8;
-  --b-surface-raised: #ffffff;
-  --b-border: #e2e5ee;
-  --b-border-hover: rgba(92, 124, 250, 0.35);
-  --b-text: #1a1d2b;
-  --b-text-secondary: #555d78;
-  --b-text-muted: #8891a8;
-  --b-text-faint: #b0b6c8;
-  --b-input-bg: #f4f5f9;
-  --b-input-border: #dde0ea;
-  --b-input-focus-shadow: rgba(92, 124, 250, 0.12);
-  --b-card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
-  --b-card-shadow-hover: 0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  --b-header-bg: rgba(255,255,255,0.85);
-  --b-header-border: #e8eaf0;
-  --b-accent-dim: rgba(92, 124, 250, 0.08);
-  --b-accent-active: rgba(92, 124, 250, 0.12);
-  --b-login-bg: #f0f2f8;
-}
-
-/* ─── DARK THEME ────────────────────────────────────────── */
-[data-theme="dark"] {
-  --b-bg: #0a0a12;
-  --b-sidebar: #0b0b14;
-  --b-sidebar-border: rgba(255,255,255,0.06);
-  --b-surface: #10101c;
-  --b-surface-hover: #161628;
-  --b-surface-raised: #14142a;
-  --b-border: rgba(255,255,255,0.06);
-  --b-border-hover: rgba(92, 124, 250, 0.25);
-  --b-text: rgba(255,255,255,0.88);
-  --b-text-secondary: rgba(255,255,255,0.6);
-  --b-text-muted: rgba(255,255,255,0.4);
-  --b-text-faint: rgba(255,255,255,0.2);
-  --b-input-bg: rgba(12,12,22,0.7);
-  --b-input-border: rgba(255,255,255,0.08);
-  --b-input-focus-shadow: rgba(92,124,250,0.1);
-  --b-card-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  --b-card-shadow-hover: 0 8px 32px rgba(0,0,0,0.4);
-  --b-header-bg: rgba(10,10,18,0.75);
-  --b-header-border: rgba(255,255,255,0.06);
-  --b-accent-dim: rgba(92,124,250,0.12);
-  --b-accent-active: rgba(92,124,250,0.18);
-  --b-login-bg: #0a0a12;
-}
-
-/* ─── GLOBAL ─────────────────────────────────────────────── */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── CRITICAL: SVG ICON SIZING ──────────────────────────── */
-/* Payload's icons have no intrinsic size — they rely on container CSS.
-   Our custom styles break some container sizing, so we enforce explicit icon sizes. */
+/* ─── SVG ICON SIZING (critical fix) ────────────────────── */
 svg.icon {
   width: 20px !important;
   height: 20px !important;
   flex-shrink: 0 !important;
 }
 
-/* Specific icon sizes */
-.icon--search {
-  width: 18px !important;
-  height: 18px !important;
-}
-
-.icon--chevron {
-  width: 14px !important;
-  height: 14px !important;
-}
-
+.icon--search { width: 16px !important; height: 16px !important; }
+.icon--chevron { width: 14px !important; height: 14px !important; }
+.icon--plus { width: 14px !important; height: 14px !important; }
 .icon--close-menu,
-.icon--menu {
-  width: 24px !important;
-  height: 24px !important;
-}
-
-.icon--plus {
-  width: 16px !important;
-  height: 16px !important;
-}
-
-.icon--logout {
-  width: 18px !important;
-  height: 18px !important;
-}
-
-/* Buttons with icons */
-.btn__icon svg {
-  width: 16px !important;
-  height: 16px !important;
-}
-
-.btn--icon-only svg {
-  width: 18px !important;
-  height: 18px !important;
-}
-
-/* Per-page selector icon */
+.icon--menu { width: 20px !important; height: 20px !important; }
+.btn__icon svg { width: 14px !important; height: 14px !important; }
+.sort-column__icon svg { width: 12px !important; height: 12px !important; }
 .per-page__icon svg,
-.per-page__base-button svg {
-  width: 14px !important;
-  height: 14px !important;
-}
+.per-page__base-button svg { width: 12px !important; height: 12px !important; }
 
-/* Pill icons */
-.pill__icon svg {
-  width: 12px !important;
-  height: 12px !important;
-}
-
-/* Sort icons in table headers */
-.sort-column__icon svg,
-.sort-pill__icon svg {
-  width: 14px !important;
-  height: 14px !important;
-}
-
-/* ─── CRITICAL: SEARCH BAR FIX ───────────────────────────── */
+/* ─── SEARCH BAR (critical fix) ─────────────────────────── */
 .search-bar {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
-  position: relative !important;
   overflow: hidden !important;
 }
 
-/* ─── CRITICAL: COLLECTION LIST LAYOUT ───────────────────── */
-.collection-list {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.collection-list__wrap {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
-}
-
-.list-controls {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  gap: 12px !important;
-  padding: 12px 0 !important;
-}
-
-/* List header with title */
-.list-header {
-  padding: 16px 0 !important;
-}
-
-.list-header__titleAndActions {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-}
-
-.list-header h1 {
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  color: var(--b-text) !important;
-}
-
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.template-default {
-  background: var(--b-bg) !important;
-}
-
-.template-default__wrap {
-  @media (min-width: 769px) {
-    padding-left: 260px !important;
-    min-height: 100vh;
-  }
-}
-
-/* ============================================================
-   SIDEBAR / NAV
-   ============================================================ */
-.nav {
-  background: var(--b-sidebar) !important;
-  border-right: 1px solid var(--b-sidebar-border) !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  width: 260px !important;
-  z-index: 100 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-
-  @media (min-width: 769px) {
+/* ─── SIDEBAR — desktop always visible ──────────────────── */
+@media (min-width: 769px) {
+  .nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 260px !important;
+    z-index: 100 !important;
     transform: none !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     visibility: visible !important;
   }
-}
 
-.nav__scroll {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 8px !important;
-}
-
-.nav__header {
-  padding: 20px 18px 16px !important;
-  border-bottom: 1px solid var(--b-border) !important;
-  flex-shrink: 0;
-}
-
-/* Nav group labels */
-.nav-group__toggle {
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 16px 12px 6px !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  border-radius: 6px !important;
-  transition: all 0.15s ease !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
+  .template-default__wrap {
+    padding-left: 260px !important;
   }
+
+  .template-default__nav-toggler-wrapper,
+  .template-default__nav-toggler-container {
+    display: none !important;
+  }
+}
+
+/* ─── NAV LINKS ─────────────────────────────────────────── */
+.nav__link {
+  border-radius: 6px !important;
+  transition: background 0.15s ease !important;
+}
+
+.nav__link:hover {
+  background: var(--brand-dim) !important;
+}
+
+.nav__link--active {
+  background: var(--brand-dim) !important;
+  font-weight: 600 !important;
 }
 
 .nav-group__label {
   font-size: 10px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.12em !important;
-  color: var(--b-text-muted) !important;
+  letter-spacing: 0.1em !important;
 }
 
-.nav-group__indicator {
-  width: 14px !important;
-  height: 14px !important;
-  opacity: 0.4 !important;
-
-  svg { width: 14px !important; height: 14px !important; }
+.nav-group__indicator svg {
+  width: 12px !important;
+  height: 12px !important;
 }
 
-.nav-group__content {
-  padding: 2px 0 4px !important;
-}
-
-/* Nav links */
-.nav__link {
-  display: flex !important;
-  align-items: center !important;
-  gap: 9px !important;
-  padding: 8px 14px !important;
-  margin: 1px 4px !important;
+/* ─── BUTTONS ───────────────────────────────────────────── */
+.btn--style-primary {
+  background: linear-gradient(135deg, #5c7cfa, #4c6ef5) !important;
+  border: none !important;
   border-radius: 8px !important;
-  font-size: 13.5px !important;
-  font-weight: 500 !important;
-  color: var(--b-text-secondary) !important;
-  text-decoration: none !important;
-  transition: all 0.14s ease !important;
-  position: relative !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
-    color: var(--b-text) !important;
-  }
-}
-
-.nav__link--active {
-  background: var(--b-accent-active) !important;
-  color: var(--brand-primary) !important;
   font-weight: 600 !important;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 18px;
-    background: var(--brand-primary);
-    border-radius: 0 3px 3px 0;
-  }
+  box-shadow: 0 2px 8px rgba(92, 124, 250, 0.25) !important;
 }
 
-.nav__link-label {
-  font-size: 13.5px !important;
+.btn--style-primary:hover {
+  box-shadow: 0 4px 16px rgba(92, 124, 250, 0.4) !important;
 }
 
-/* Nav footer */
-.nav__controls {
-  padding: 10px 8px !important;
-  border-top: 1px solid var(--b-border) !important;
-  flex-shrink: 0;
+/* ─── CARD ACCENT DOTS ──────────────────────────────────── */
+.card-pages .card__title::before,
+.card-media .card__title::before,
+.card-navigation .card__title::before,
+.card-users .card__title::before,
+.card-site-settings .card__title::before,
+.card-footer .card__title::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
-.nav__log-out {
-  padding: 6px 12px !important;
-  border-radius: 8px !important;
-  font-size: 12px !important;
-  color: var(--b-text-muted) !important;
-  transition: all 0.15s ease !important;
+.card-pages .card__title::before { background: var(--brand); }
+.card-media .card__title::before { background: var(--brand-pink); }
+.card-navigation .card__title::before { background: var(--brand-yellow); }
+.card-users .card__title::before { background: var(--brand-green); }
+.card-site-settings .card__title::before { background: var(--brand-hover); }
+.card-footer .card__title::before { background: var(--brand-pink); }
 
-  &:hover {
-    background: rgba(240, 101, 149, 0.08) !important;
-    color: var(--brand-pink) !important;
-  }
-}
-
-/* Nav toggler styling — force transparent on all states */
-.nav-toggler,
-button.nav-toggler,
-.template-default__nav-toggler,
-button.template-default__nav-toggler,
-.app-header__mobile-nav-toggler,
-button.app-header__mobile-nav-toggler {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 1px solid var(--b-border) !important;
-  padding: 6px !important;
-  cursor: pointer !important;
-  border-radius: 8px !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
-  }
-}
-
-/* Hide hamburger on desktop */
-.template-default__nav-toggler-container,
-.template-default__nav-toggler-wrapper,
-.template-default__nav-toggler,
-.hamburger {
-  @media (min-width: 769px) {
-    display: none !important;
-  }
-}
-
-/* ============================================================
-   APP HEADER
-   ============================================================ */
-.app-header {
-  background: var(--b-header-bg) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border-bottom: 1px solid var(--b-header-border) !important;
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 50 !important;
-}
-
-.app-header__bg {
-  background: transparent !important;
-}
-
-.app-header__content {
-  min-height: 54px !important;
-}
-
-.app-header__wrapper {
-  padding: 0 24px !important;
-}
-
-/* Breadcrumbs */
-.step-nav a,
-.step-nav__home {
-  color: var(--b-text-muted) !important;
-  font-size: 13px !important;
-  text-decoration: none !important;
-  transition: color 0.14s ease !important;
-
-  &:hover { color: var(--brand-primary) !important; }
-}
-
-.step-nav__last {
-  color: var(--b-text) !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-}
-
-/* Gravatar */
-.gravatar-account {
-  border-radius: 50% !important;
-  border: 2px solid var(--b-border) !important;
-  transition: border-color 0.2s ease !important;
-
-  &:hover {
-    border-color: var(--brand-primary) !important;
-  }
-}
-
-/* ============================================================
-   DASHBOARD
-   ============================================================ */
-.dashboard,
-.modular-dashboard {
-  padding: 28px !important;
-  background: var(--b-bg) !important;
-}
-
-.collections__label {
+/* ─── TABLES ────────────────────────────────────────────── */
+table thead th {
   font-size: 10px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.11em !important;
-  color: var(--b-text-muted) !important;
-  margin-bottom: 12px !important;
+  letter-spacing: 0.08em !important;
 }
 
-.collections__card-list {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
-  gap: 14px !important;
-  margin-bottom: 28px !important;
-}
-
-/* ─── CARDS ─────────────────────────────────────────────── */
-.card {
-  background: var(--b-surface) !important;
-  border: 1px solid var(--b-border) !important;
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  box-shadow: var(--b-card-shadow) !important;
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
-              border-color 0.2s ease,
-              box-shadow 0.22s ease !important;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-3px) !important;
-    border-color: var(--b-border-hover) !important;
-    background: var(--b-surface-hover) !important;
-    box-shadow: var(--b-card-shadow-hover) !important;
-  }
-}
-
-.card__click {
-  padding: 20px !important;
-}
-
-.card__title {
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  color: var(--b-text) !important;
-  letter-spacing: -0.01em !important;
-}
-
-.card-footer {
-  padding: 12px 20px !important;
-  border-top: 1px solid var(--b-border) !important;
-}
-
-/* Card accent dots */
-.card-pages .card__click::before,
-.card-media .card__click::before,
-.card-users .card__click::before,
-.card-navigation .card__click::before,
-.card-site-settings .card__click::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-bottom: 12px;
-}
-.card-pages .card__click::before { background: var(--brand-primary); box-shadow: 0 0 8px var(--brand-primary); }
-.card-media .card__click::before { background: var(--brand-pink); box-shadow: 0 0 8px var(--brand-pink); }
-.card-users .card__click::before { background: var(--brand-green); box-shadow: 0 0 8px var(--brand-green); }
-.card-navigation .card__click::before { background: var(--brand-yellow); box-shadow: 0 0 8px var(--brand-yellow); }
-.card-site-settings .card__click::before { background: var(--brand-primary-light); box-shadow: 0 0 8px var(--brand-primary-light); }
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-.btn {
-  font-family: var(--font-body) !important;
-  font-weight: 500 !important;
-  border-radius: 9px !important;
-  transition: all 0.18s ease !important;
-}
-
-.btn--style-primary {
-  background: linear-gradient(135deg, #5c7cfa 0%, #4c6ef5 100%) !important;
-  border: none !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-  box-shadow: 0 2px 10px rgba(92, 124, 250, 0.25) !important;
-
-  &:hover {
-    background: linear-gradient(135deg, #6a8cfb 0%, #5c7cfa 100%) !important;
-    box-shadow: 0 4px 20px rgba(92, 124, 250, 0.4) !important;
-    transform: translateY(-1px);
-  }
-}
-
-.btn--style-secondary {
-  background: var(--b-surface) !important;
-  border: 1px solid var(--b-border) !important;
-  color: var(--b-text-secondary) !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
-    border-color: var(--b-border-hover) !important;
-    color: var(--brand-primary) !important;
-  }
-}
-
-.btn--icon-only,
-.btn--icon {
-  border-radius: 8px !important;
-  border: 1px solid var(--b-border) !important;
-  background: var(--b-surface) !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
-    border-color: var(--b-border-hover) !important;
-  }
-}
-
-/* ============================================================
-   FORM FIELDS
-   ============================================================ */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="url"],
-textarea,
-select,
-.field-type input,
-.field-type textarea,
-.field-type select {
-  background: var(--b-input-bg) !important;
-  border: 1px solid var(--b-input-border) !important;
-  border-radius: 10px !important;
-  color: var(--b-text) !important;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
-
-  &:focus,
-  &:focus-visible {
-    border-color: var(--brand-primary) !important;
-    box-shadow: 0 0 0 3px var(--b-input-focus-shadow) !important;
-    outline: none !important;
-  }
-}
-
-.rs__control {
-  background: var(--b-input-bg) !important;
-  border: 1px solid var(--b-input-border) !important;
-  border-radius: 10px !important;
-}
-
-.field-label, label {
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  color: var(--b-text-secondary) !important;
-}
-
-/* ============================================================
-   TABLES
-   ============================================================ */
-.table {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--b-border) !important;
-  background: var(--b-surface) !important;
-}
-
-table thead tr {
-  background: var(--b-input-bg) !important;
-  border-bottom: 1px solid var(--b-border) !important;
-}
-
-table thead th {
-  font-size: 10.5px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.1em !important;
-  color: var(--b-text-muted) !important;
-  padding: 12px 16px !important;
-}
-
-table tbody tr {
-  border-bottom: 1px solid var(--b-border) !important;
-  transition: background 0.14s ease !important;
-
-  &:hover { background: var(--b-accent-dim) !important; }
-  &:last-child { border-bottom: none !important; }
-}
-
-table tbody td {
-  padding: 13px 16px !important;
-  font-size: 13px !important;
-  color: var(--b-text-secondary) !important;
-}
-
-/* ============================================================
-   LOGIN PAGE
-   ============================================================ */
+/* ─── LOGIN PAGE — always dark & centered ───────────────── */
 .template-minimal,
 .login {
   background: #0c0c1a !important;
@@ -644,42 +150,30 @@ table tbody td {
   justify-content: center !important;
   position: relative !important;
   overflow: hidden !important;
-
-  /* Ambient gradient orbs */
-  &::before {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    top: -200px;
-    right: -200px;
-    background: radial-gradient(circle, rgba(92, 124, 250, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    bottom: -150px;
-    left: -150px;
-    background: radial-gradient(circle, rgba(240, 101, 149, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
 }
 
-/* Override light theme vars specifically for login — always dark */
-.template-minimal,
-.login {
-  --b-surface: rgba(255, 255, 255, 0.06);
-  --b-border: rgba(255, 255, 255, 0.1);
-  --b-text: rgba(255, 255, 255, 0.92);
-  --b-text-secondary: rgba(255, 255, 255, 0.6);
-  --b-text-muted: rgba(255, 255, 255, 0.4);
-  --b-input-bg: rgba(255, 255, 255, 0.06);
-  --b-input-border: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.92) !important;
+.template-minimal::before,
+.login::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(92, 124, 250, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.template-minimal::after,
+.login::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(240, 101, 149, 0.1) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .template-minimal__wrap,
@@ -695,38 +189,35 @@ table tbody td {
 .login form,
 .template-minimal form {
   background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(24px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 24px !important;
-  padding: 40px 36px !important;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-
-  /* Top gradient accent */
-  &::before {
-    content: '';
-    display: block;
-    height: 3px;
-    border-radius: 24px 24px 0 0;
-    background: linear-gradient(90deg, #5c7cfa, #f06595, #20c997);
-    margin: -40px -36px 32px !important;
-  }
+  border-radius: 20px !important;
+  padding: 36px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4) !important;
 }
 
-.login .form-submit .btn,
-.template-minimal .form-submit .btn {
-  width: 100% !important;
-  margin-top: 12px !important;
-  padding: 14px !important;
-  font-size: 15px !important;
-  border-radius: 12px !important;
+.login form::before,
+.template-minimal form::before {
+  content: '';
+  display: block;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #5c7cfa, #f06595, #20c997);
+  margin: -36px -36px 28px !important;
 }
 
-/* Login labels & inputs — always light text on dark */
+/* Force light text on dark login */
+.login,
+.login *,
+.template-minimal,
+.template-minimal * {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
 .login label,
-.template-minimal label,
-.login .field-label {
-  color: rgba(255, 255, 255, 0.7) !important;
+.template-minimal label {
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .login input,
@@ -734,281 +225,152 @@ table tbody td {
   background: rgba(255, 255, 255, 0.06) !important;
   border-color: rgba(255, 255, 255, 0.12) !important;
   color: #fff !important;
+}
 
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.3) !important;
-  }
-
-  &:focus {
-    border-color: rgba(92, 124, 250, 0.6) !important;
-    box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.15) !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-  }
+.login input:focus,
+.template-minimal input:focus {
+  border-color: rgba(92, 124, 250, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.12) !important;
 }
 
 .login a,
 .template-minimal a {
-  color: var(--brand-primary-light) !important;
+  color: var(--brand-hover) !important;
 }
 
-/* Logo text on login — force white */
-.login [style*="color"],
-.template-minimal [style*="color"] {
-  color: rgba(255, 255, 255, 0.9) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+.login .form-submit .btn {
+  width: 100% !important;
+  padding: 12px !important;
 }
 
-/* The "WEBSITE PLATFORM" subtitle */
-.login [style*="uppercase"],
-.template-minimal [style*="uppercase"] {
-  color: rgba(255, 255, 255, 0.4) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-/* ============================================================
-   MODALS
-   ============================================================ */
-.payload__modal-container .payload__modal-item {
-  background: var(--b-surface) !important;
-  border: 1px solid var(--b-border) !important;
-  border-radius: 18px !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.15) !important;
-}
-
-[data-theme="dark"] .payload__modal-container .payload__modal-item {
-  backdrop-filter: blur(24px) !important;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6) !important;
-}
-
-/* ============================================================
-   WIDGETS
-   ============================================================ */
-.widget {
-  background: var(--b-surface) !important;
-  border: 1px solid var(--b-border) !important;
-  border-radius: 14px !important;
-  box-shadow: var(--b-card-shadow) !important;
-}
-
-/* ============================================================
-   BLOCKS / EDITOR
-   ============================================================ */
-.blocks-drawer__blocks .blocks-drawer__block {
-  border-radius: 10px !important;
-  border: 1px solid var(--b-border) !important;
-  transition: all 0.15s ease !important;
-
-  &:hover {
-    background: var(--b-accent-dim) !important;
-    border-color: var(--b-border-hover) !important;
-  }
-}
-
-/* ============================================================
-   DOCUMENT HEADERS
-   ============================================================ */
-.collection-list__header,
-.document-header {
-  border-bottom: 1px solid var(--b-border) !important;
-}
-
-/* ============================================================
-   MISC
-   ============================================================ */
-.pill { border-radius: 20px !important; }
-.gutter--left { padding-left: 24px !important; }
-.gutter--right { padding-right: 24px !important; }
-
-/* Scrollbar — only custom in dark mode */
-[data-theme="dark"] {
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-    &:hover { background: rgba(255,255,255,0.18); }
-  }
-}
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
+/* ─── MOBILE ────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Sidebar — hidden by default, slide in when open */
+  /* Hide sidebar on mobile — Payload toggles with JS classes */
   .nav {
-    transform: translateX(-100%) !important;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
     width: 280px !important;
     z-index: 200 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease !important;
   }
 
-  .nav--nav-open {
+  .nav.nav--nav-open {
     transform: translateX(0) !important;
   }
 
-  /* Main content — no left padding on mobile */
   .template-default__wrap {
     padding-left: 0 !important;
   }
 
-  /* Hide the EXTRA template-level toggler (we use header one) */
-  .template-default__nav-toggler-wrapper,
-  .template-default__nav-toggler-container {
-    display: none !important;
+  /* Compact cards */
+  .card {
+    border-radius: 10px !important;
   }
 
-  /* Style the header hamburger button */
-  .nav-toggler,
-  .app-header__mobile-nav-toggler {
+  /* Make header elements horizontal */
+  .app-header__content {
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
-    justify-content: center !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--b-border) !important;
-    background: transparent !important;
-    cursor: pointer !important;
-    padding: 0 !important;
-
-    &:hover {
-      background: var(--b-accent-dim) !important;
-    }
-  }
-
-  .hamburger {
-    display: flex !important;
-    width: 20px !important;
-    height: 20px !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-
-  .hamburger svg.icon {
-    width: 18px !important;
-    height: 18px !important;
-    color: var(--b-text-secondary) !important;
-  }
-
-  /* Header — compact on mobile */
-  .app-header {
-    padding: 0 !important;
+    justify-content: space-between !important;
+    min-height: 48px !important;
+    padding: 0 8px !important;
   }
 
   .app-header__wrapper {
-    padding: 0 12px !important;
-    min-height: 50px !important;
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
+    gap: 8px !important;
+    flex: 1 !important;
+    padding: 0 4px !important;
+    min-width: 0 !important;
   }
 
-  .app-header__content {
-    min-height: 50px !important;
+  .app-header__controls-wrapper {
     display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-  }
-
-  /* Breadcrumbs — compact */
-  .step-nav {
-    font-size: 12px !important;
-    display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     gap: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .app-header__step-nav-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
     overflow: hidden !important;
   }
 
-  .step-nav a,
-  .step-nav__home {
-    font-size: 12px !important;
+  /* Breadcrumb — truncate on mobile */
+  .step-nav {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
-  /* Gravatar — smaller on mobile */
+  /* Hide the extra toggler wrapper above header */
+  .template-default__nav-toggler-wrapper {
+    display: none !important;
+  }
+
+  /* Style all hamburger/toggler buttons */
+  .nav-toggler,
+  button.nav-toggler {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 8px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .hamburger {
+    background: transparent !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Gravatar smaller */
   .gravatar-account {
-    width: 32px !important;
-    height: 32px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 
-  /* Dashboard — compact padding */
+  /* Dashboard padding */
   .dashboard,
   .modular-dashboard {
-    padding: 16px !important;
+    padding: 12px !important;
   }
 
-  /* Cards — compact 2-column grid on mobile */
+  /* Collection card grid */
   .collections__card-list {
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-  }
-
-  .card {
-    border-radius: 12px !important;
-  }
-
-  .card__click {
-    padding: 14px !important;
-    min-height: auto !important;
-  }
-
-  .card__title {
-    font-size: 13px !important;
-  }
-
-  /* Card footer — compact */
-  .card-footer {
-    padding: 8px 14px !important;
-  }
-
-  /* Card accent dots — smaller on mobile */
-  .card-pages .card__click::before,
-  .card-media .card__click::before,
-  .card-users .card__click::before,
-  .card-navigation .card__click::before,
-  .card-site-settings .card__click::before {
-    width: 6px !important;
-    height: 6px !important;
-    margin-bottom: 8px !important;
-  }
-
-  /* Gutter — less padding on mobile */
-  .gutter--left { padding-left: 16px !important; }
-  .gutter--right { padding-right: 16px !important; }
-
-  /* Collection lists */
-  .list-header h1 {
-    font-size: 18px !important;
-  }
-
-  /* Forms — full width inputs */
-  .login form,
-  .template-minimal form {
-    padding: 32px 24px !important;
-    border-radius: 20px !important;
-
-    &::before {
-      margin: -32px -24px 24px !important;
-      border-radius: 20px 20px 0 0;
-    }
-  }
-
-  .login .template-minimal__wrap,
-  .login__wrap {
-    padding: 16px !important;
-  }
-
-  /* Table — responsive */
-  table thead th,
-  table tbody td {
-    padding: 10px 12px !important;
-    font-size: 12px !important;
-  }
-
-  /* Blocks editor — compact */
-  .blocks-field__rows {
     gap: 8px !important;
   }
+
+  /* Login form */
+  .login form,
+  .template-minimal form {
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .login form::before,
+  .template-minimal form::before {
+    margin: -28px -20px 20px !important;
+    border-radius: 16px 16px 0 0;
+  }
 }
+
+/* ─── DARK SCROLLBAR ────────────────────────────────────── */
+[data-theme="dark"] ::-webkit-scrollbar { width: 5px; height: 5px; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: transparent; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
