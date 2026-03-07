@@ -37,7 +37,7 @@ export default buildConfig({
         },
       },
     },
-    theme: 'dark',
+    theme: 'all',
   },
   collections: [Pages, Media, Navigation, Users],
   globals: [SiteSettings, Footer],
