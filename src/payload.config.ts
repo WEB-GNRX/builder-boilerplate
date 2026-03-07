@@ -27,10 +27,17 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo: '/components/admin/Logo#Logo',
-        Icon: '/components/admin/Icon#Icon',
+        Logo: {
+          path: '/components/admin/Logo',
+          exportName: 'Logo',
+        },
+        Icon: {
+          path: '/components/admin/Icon',
+          exportName: 'Icon',
+        },
       },
     },
+    theme: 'dark',
   },
   collections: [Pages, Media, Navigation, Users],
   globals: [SiteSettings, Footer],
