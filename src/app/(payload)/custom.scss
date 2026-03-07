@@ -1,1 +1,232 @@
-/* Custom Payload admin styles */
+/* Builder Admin — Custom Theme */
+
+:root {
+  /* Override Payload's theme colors */
+  --theme-elevation-0: #0a0a0f;
+  --theme-elevation-50: #0f0f17;
+  --theme-elevation-100: #14141e;
+  --theme-elevation-150: #1a1a26;
+  --theme-elevation-200: #1f1f2e;
+  --theme-elevation-250: #252536;
+  --theme-elevation-300: #2a2a3e;
+  --theme-elevation-350: #303046;
+  --theme-elevation-400: #36364e;
+  --theme-elevation-450: #3c3c56;
+  --theme-elevation-500: #42425e;
+  --theme-elevation-550: #505070;
+  --theme-elevation-600: #606080;
+  --theme-elevation-650: #707090;
+  --theme-elevation-700: #8080a0;
+  --theme-elevation-750: #9090b0;
+  --theme-elevation-800: #a0a0c0;
+  --theme-elevation-850: #b0b0d0;
+  --theme-elevation-900: #c0c0e0;
+  --theme-elevation-950: #d0d0f0;
+  --theme-elevation-1000: #e8e8ff;
+
+  /* Brand colors */
+  --theme-success-500: #20c997;
+  --theme-error-500: #f06595;
+  --theme-warning-500: #fcc419;
+
+  /* Typography */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Border radius - make it more modern */
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --theme-bg: #0a0a0f;
+  --theme-input-bg: #14141e;
+  --theme-text: #e8e8ff;
+}
+
+/* Force dark theme */
+html {
+  color-scheme: dark;
+}
+
+/* Login page styling */
+.login {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%) !important;
+  min-height: 100vh;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(92, 124, 250, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(240, 101, 149, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(32, 201, 151, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Sidebar / Nav styling */
+.nav-wrapper,
+.template-default__nav {
+  background: #0f0f17 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Nav links */
+.nav-group__toggle,
+.nav__link {
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav__link:hover,
+.nav__link--active {
+  background: rgba(92, 124, 250, 0.1) !important;
+}
+
+.nav__link--active {
+  color: #748ffc !important;
+  font-weight: 600 !important;
+}
+
+/* Cards and containers */
+.card,
+.document-fields,
+.collection-list {
+  border-radius: 12px !important;
+}
+
+/* Table styling */
+.table {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* Buttons - primary */
+.btn--style-primary {
+  background: linear-gradient(135deg, #5c7cfa 0%, #4c6ef5 100%) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(92, 124, 250, 0.3) !important;
+
+  &:hover {
+    background: linear-gradient(135deg, #748ffc 0%, #5c7cfa 100%) !important;
+    box-shadow: 0 4px 16px rgba(92, 124, 250, 0.4) !important;
+    transform: translateY(-1px);
+  }
+}
+
+/* Buttons - secondary */
+.btn--style-secondary {
+  border-radius: 10px !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.2s ease !important;
+
+  &:hover {
+    border-color: rgba(92, 124, 250, 0.3) !important;
+    background: rgba(92, 124, 250, 0.05) !important;
+  }
+}
+
+/* Input fields */
+.field-type input,
+.field-type textarea,
+.field-type select,
+.react-select__control {
+  border-radius: 10px !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(20, 20, 30, 0.8) !important;
+  transition: all 0.2s ease !important;
+
+  &:focus,
+  &:focus-within {
+    border-color: rgba(92, 124, 250, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.1) !important;
+  }
+}
+
+/* Dashboard cards */
+.dashboard__card-list .card {
+  background: rgba(20, 20, 30, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    border-color: rgba(92, 124, 250, 0.2) !important;
+    background: rgba(25, 25, 40, 0.8) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Headers */
+.collection-list__header,
+.document-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Block selector - make it prettier */
+.blocks-drawer__blocks .blocks-drawer__block {
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
+
+  &:hover {
+    background: rgba(92, 124, 250, 0.08) !important;
+  }
+}
+
+/* Pills / Tags */
+.pill {
+  border-radius: 20px !important;
+}
+
+/* Step nav / Breadcrumb */
+.step-nav {
+  a {
+    transition: color 0.2s ease !important;
+
+    &:hover {
+      color: #748ffc !important;
+    }
+  }
+}
+
+/* Global styles */
+.payload__modal-container .payload__modal-item {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Make the whole admin feel premium */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

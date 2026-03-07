@@ -21,6 +21,16 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    meta: {
+      titleSuffix: ' — Builder',
+      icons: [{ url: '/favicon.ico' }],
+    },
+    components: {
+      graphics: {
+        Logo: '/components/admin/Logo#Logo',
+        Icon: '/components/admin/Icon#Icon',
+      },
+    },
   },
   collections: [Pages, Media, Navigation, Users],
   globals: [SiteSettings, Footer],
