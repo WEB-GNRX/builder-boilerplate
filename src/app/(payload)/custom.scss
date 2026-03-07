@@ -341,8 +341,30 @@ svg.icon {
   }
 }
 
+/* Nav toggler styling — force transparent on all states */
+.nav-toggler,
+button.nav-toggler,
+.template-default__nav-toggler,
+button.template-default__nav-toggler,
+.app-header__mobile-nav-toggler,
+button.app-header__mobile-nav-toggler {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid var(--b-border) !important;
+  padding: 6px !important;
+  cursor: pointer !important;
+  border-radius: 8px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  &:hover {
+    background: var(--b-accent-dim) !important;
+  }
+}
+
 /* Hide hamburger on desktop */
 .template-default__nav-toggler-container,
+.template-default__nav-toggler-wrapper,
 .template-default__nav-toggler,
 .hamburger {
   @media (min-width: 769px) {
@@ -614,11 +636,50 @@ table tbody td {
    ============================================================ */
 .template-minimal,
 .login {
-  background: var(--b-login-bg) !important;
+  background: #0c0c1a !important;
   min-height: 100vh !important;
+  min-height: 100dvh !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  /* Ambient gradient orbs */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(92, 124, 250, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    left: -150px;
+    background: radial-gradient(circle, rgba(240, 101, 149, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+/* Override light theme vars specifically for login — always dark */
+.template-minimal,
+.login {
+  --b-surface: rgba(255, 255, 255, 0.06);
+  --b-border: rgba(255, 255, 255, 0.1);
+  --b-text: rgba(255, 255, 255, 0.92);
+  --b-text-secondary: rgba(255, 255, 255, 0.6);
+  --b-text-muted: rgba(255, 255, 255, 0.4);
+  --b-input-bg: rgba(255, 255, 255, 0.06);
+  --b-input-border: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92) !important;
 }
 
 .template-minimal__wrap,
@@ -626,36 +687,82 @@ table tbody td {
   width: 100% !important;
   max-width: 420px !important;
   margin: auto !important;
-  padding: 20px !important;
+  padding: 24px !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .login form,
 .template-minimal form {
-  background: var(--b-surface) !important;
-  border: 1px solid var(--b-border) !important;
-  border-radius: 20px !important;
-  padding: 44px !important;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(24px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 40px 36px !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 
+  /* Top gradient accent */
   &::before {
     content: '';
     display: block;
     height: 3px;
-    border-radius: 3px 3px 0 0;
+    border-radius: 24px 24px 0 0;
     background: linear-gradient(90deg, #5c7cfa, #f06595, #20c997);
-    margin: -44px -44px 36px !important;
+    margin: -40px -36px 32px !important;
   }
 }
 
-[data-theme="dark"] .login form,
-[data-theme="dark"] .template-minimal form {
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5) !important;
+.login .form-submit .btn,
+.template-minimal .form-submit .btn {
+  width: 100% !important;
+  margin-top: 12px !important;
+  padding: 14px !important;
+  font-size: 15px !important;
+  border-radius: 12px !important;
 }
 
-.login .form-submit .btn {
-  width: 100% !important;
-  margin-top: 8px !important;
-  padding: 12px !important;
+/* Login labels & inputs — always light text on dark */
+.login label,
+.template-minimal label,
+.login .field-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.login input,
+.template-minimal input {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  &:focus {
+    border-color: rgba(92, 124, 250, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(92, 124, 250, 0.15) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+.login a,
+.template-minimal a {
+  color: var(--brand-primary-light) !important;
+}
+
+/* Logo text on login — force white */
+.login [style*="color"],
+.template-minimal [style*="color"] {
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* The "WEBSITE PLATFORM" subtitle */
+.login [style*="uppercase"],
+.template-minimal [style*="uppercase"] {
+  color: rgba(255, 255, 255, 0.4) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* ============================================================
@@ -727,23 +834,181 @@ table tbody td {
    MOBILE
    ============================================================ */
 @media (max-width: 768px) {
+  /* Sidebar — hidden by default, slide in when open */
   .nav {
     transform: translateX(-100%) !important;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    width: 280px !important;
+    z-index: 200 !important;
   }
 
   .nav--nav-open {
     transform: translateX(0) !important;
   }
 
+  /* Main content — no left padding on mobile */
   .template-default__wrap {
     padding-left: 0 !important;
   }
 
-  .template-default__nav-toggler-container,
-  .hamburger {
-    display: flex !important;
+  /* Hide the EXTRA template-level toggler (we use header one) */
+  .template-default__nav-toggler-wrapper,
+  .template-default__nav-toggler-container {
+    display: none !important;
   }
 
-  .dashboard { padding: 16px !important; }
+  /* Style the header hamburger button */
+  .nav-toggler,
+  .app-header__mobile-nav-toggler {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--b-border) !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+
+    &:hover {
+      background: var(--b-accent-dim) !important;
+    }
+  }
+
+  .hamburger {
+    display: flex !important;
+    width: 20px !important;
+    height: 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  .hamburger svg.icon {
+    width: 18px !important;
+    height: 18px !important;
+    color: var(--b-text-secondary) !important;
+  }
+
+  /* Header — compact on mobile */
+  .app-header {
+    padding: 0 !important;
+  }
+
+  .app-header__wrapper {
+    padding: 0 12px !important;
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .app-header__content {
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  /* Breadcrumbs — compact */
+  .step-nav {
+    font-size: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    overflow: hidden !important;
+  }
+
+  .step-nav a,
+  .step-nav__home {
+    font-size: 12px !important;
+  }
+
+  /* Gravatar — smaller on mobile */
+  .gravatar-account {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Dashboard — compact padding */
+  .dashboard,
+  .modular-dashboard {
+    padding: 16px !important;
+  }
+
+  /* Cards — compact 2-column grid on mobile */
+  .collections__card-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .card {
+    border-radius: 12px !important;
+  }
+
+  .card__click {
+    padding: 14px !important;
+    min-height: auto !important;
+  }
+
+  .card__title {
+    font-size: 13px !important;
+  }
+
+  /* Card footer — compact */
+  .card-footer {
+    padding: 8px 14px !important;
+  }
+
+  /* Card accent dots — smaller on mobile */
+  .card-pages .card__click::before,
+  .card-media .card__click::before,
+  .card-users .card__click::before,
+  .card-navigation .card__click::before,
+  .card-site-settings .card__click::before {
+    width: 6px !important;
+    height: 6px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Gutter — less padding on mobile */
+  .gutter--left { padding-left: 16px !important; }
+  .gutter--right { padding-right: 16px !important; }
+
+  /* Collection lists */
+  .list-header h1 {
+    font-size: 18px !important;
+  }
+
+  /* Forms — full width inputs */
+  .login form,
+  .template-minimal form {
+    padding: 32px 24px !important;
+    border-radius: 20px !important;
+
+    &::before {
+      margin: -32px -24px 24px !important;
+      border-radius: 20px 20px 0 0;
+    }
+  }
+
+  .login .template-minimal__wrap,
+  .login__wrap {
+    padding: 16px !important;
+  }
+
+  /* Table — responsive */
+  table thead th,
+  table tbody td {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Blocks editor — compact */
+  .blocks-field__rows {
+    gap: 8px !important;
+  }
 }
